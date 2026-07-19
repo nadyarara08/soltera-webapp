@@ -1,4 +1,4 @@
-import { Leaf, Github, Mail, Instagram } from "lucide-react";
+import { Leaf, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -12,7 +12,7 @@ export function Footer() {
               </span>
               <span className="font-display text-lg font-bold text-cream">SOLTERA</span>
             </div>
-            <p className="font-serif text-sm font-medium leading-relaxed text-cream/65">
+            <p className="font-accent text-sm font-medium leading-relaxed text-cream/65">
               Solar dan Termoelektrik untuk Agrikultur — wadah simpan dingin
               cerdas yang membantu petani hortikultura menekan food loss
               pascapanen melalui teknologi surya dan monitoring real-time.
@@ -33,7 +33,6 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-cream/10 pt-6 text-xs font-medium text-cream/50 sm:flex-row">
           <p>© {new Date().getFullYear()} SOLTERA. Dibangun untuk mendukung ketahanan pangan hortikultura.</p>
-          <p>Dibuat dengan Next.js, Firebase &amp; sinar matahari.</p>
         </div>
       </div>
     </footer>

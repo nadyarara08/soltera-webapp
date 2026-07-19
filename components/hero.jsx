@@ -29,26 +29,13 @@ export function Hero() {
             SOLTERA — Smart Solar Cold Storage for Fresh Agriculture
           </h1>
 
-          <p className="max-w-lg font-serif text-base font-medium leading-relaxed text-ink/70 sm:text-lg">
+          <p className="max-w-lg font-accent text-base font-medium leading-relaxed text-ink/70 sm:text-lg">
             Wadah simpan dingin cerdas bertenaga surya yang menekan food loss
             komoditas hortikultura pascapanen, lengkap dengan monitoring suhu,
             kelembapan, dan energi secara real-time.
           </p>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" variant="primary">
-              <a href="#monitoring" className="flex items-center gap-2">
-                Live Dashboard <ArrowRight size={16} />
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <a href="#documentation" className="flex items-center gap-2">
-                <FileText size={16} /> Documentation
-              </a>
-            </Button>
-          </div>
-
-          <div className="mt-4 flex items-center gap-6 text-sm font-medium text-ink/50">
+          <div className="-mt-2 flex items-center gap-5 text-sm font-medium text-ink/50">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-leaf" />
               100% Solar Powered
@@ -57,6 +44,14 @@ export function Hero() {
               <span className="h-2 w-2 rounded-full bg-forest" />
               Realtime IoT Monitoring
             </div>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <Button asChild size="lg" variant="primary">
+              <a href="#monitoring" className="flex items-center gap-2">
+                Live Dashboard <ArrowRight size={16} />
+              </a>
+            </Button>
           </div>
         </motion.div>
 

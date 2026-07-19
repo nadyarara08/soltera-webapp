@@ -44,7 +44,7 @@ export function DialogTitle({ className, ...props }) {
 export function DialogDescription({ className, ...props }) {
   return (
     <DialogPrimitive.Description
-      className={cn("font-serif text-sm font-medium text-ink/70", className)}
+      className={cn("font-accent text-sm font-medium text-ink/70", className)}
       {...props}
     />
   );

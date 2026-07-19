@@ -69,7 +69,7 @@ export function ResearchDocumentation() {
                   <CardTitle className="mt-3 text-base sm:mt-4 sm:text-lg">{doc.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-1 flex-col p-0 pt-3 sm:pt-4">
-                  <p className="flex-1 font-serif text-xs font-medium leading-relaxed text-ink/70 sm:text-sm">{doc.summary}</p>
+                  <p className="flex-1 font-accent text-xs font-medium leading-relaxed text-ink/70 sm:text-sm">{doc.summary}</p>
 
                   <Dialog>
                     <DialogTrigger asChild>

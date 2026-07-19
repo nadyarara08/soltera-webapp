@@ -63,7 +63,7 @@ export function SolutionSection() {
                   <f.icon size={22} className="hidden sm:block" />
                 </div>
                 <h3 className="font-display text-sm font-semibold text-ink sm:text-lg">{f.title}</h3>
-                <p className="font-serif text-xs font-medium leading-snug text-ink/70 sm:text-sm sm:leading-relaxed">{f.description}</p>
+                <p className="font-accent text-xs font-medium leading-snug text-ink/70 sm:text-sm sm:leading-relaxed">{f.description}</p>
               </Card>
             </motion.div>
           ))}

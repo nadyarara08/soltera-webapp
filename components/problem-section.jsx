@@ -65,7 +65,7 @@ export function ProblemSection() {
                 <p className="font-display mt-3 text-2xl font-extrabold text-ink sm:mt-5 sm:text-4xl">
                   <CountUp value={stat.value} suffix={stat.suffix} />
                 </p>
-                <p className="mt-2 font-serif text-xs font-medium leading-snug text-ink/70 sm:mt-3 sm:text-sm sm:leading-relaxed">{stat.label}</p>
+                <p className="mt-2 font-accent text-xs font-medium leading-snug text-ink/70 sm:mt-3 sm:text-sm sm:leading-relaxed">{stat.label}</p>
                 <p className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-ink/40 sm:mt-4 sm:text-xs">
                   {stat.source}
                 </p>

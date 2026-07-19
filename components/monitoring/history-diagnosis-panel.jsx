@@ -89,7 +89,7 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
                   24 Jam Terakhir
                 </span>
               </div>
-              <p className="mt-2 max-w-2xl font-serif text-sm font-medium leading-relaxed text-ink/70">
+              <p className="mt-2 max-w-2xl font-accent text-sm font-medium leading-relaxed text-ink/70">
                 {loading
                   ? "Mengambil riwayat sensor 24 jam terakhir dari Firebase…"
                   : analysis?.diagnosis?.explanation}
@@ -137,11 +137,6 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
           <StatCell label="Baterai Sehat" value={analysis?.batteryHealthyPercent ?? null} unit="% waktu" />
           <StatCell label="Jumlah Titik Data" value={analysis?.count ?? 0} unit="titik" />
         </div>
-
-        <p className="mt-4 font-serif text-xs font-medium text-ink/45">
-          Diambil dari node Firebase <code className="font-mono">sensor_data</code>, disampel tiap
-          beberapa menit dan disimpan lokal di browser ini untuk jendela bergulir 24 jam.
-        </p>
       </Card>
     </motion.div>
   );

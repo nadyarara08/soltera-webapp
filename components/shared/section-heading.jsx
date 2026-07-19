@@ -25,7 +25,7 @@ export function SectionHeading({ eyebrow, title, description, align = "center", 
         {title}
       </h2>
       {description && (
-        <p className="max-w-xl font-serif text-sm font-medium leading-relaxed text-ink/70 sm:text-base">{description}</p>
+        <p className="max-w-xl font-accent text-sm font-medium leading-relaxed text-ink/70 sm:text-base">{description}</p>
       )}
     </motion.div>
   );
