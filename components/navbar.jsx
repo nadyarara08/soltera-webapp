@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -67,6 +66,9 @@ export function Navbar() {
             alt="SOLTERA"
             className="h-11 w-11 object-contain"
           />
+          <span className="font-display text-base font-bold tracking-tight text-ink sm:text-lg">
+            Soltera
+          </span>
         </a>
 
         <div className="hidden items-center gap-1 rounded-full bg-white/60 p-1 lg:flex">
@@ -77,7 +79,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-white hover:text-ink",
+                  "rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:bg-white hover:text-ink",
                   isActive
                     ? "text-ink underline decoration-forest decoration-2 underline-offset-4"
                     : "text-ink/70"
@@ -87,12 +89,6 @@ export function Navbar() {
               </a>
             );
           })}
-        </div>
-
-        <div className="hidden lg:block">
-          <Button asChild size="default" variant="primary">
-            <a href="#monitoring">Live Dashboard</a>
-          </Button>
         </div>
 
         <button
@@ -119,7 +115,7 @@ export function Navbar() {
                 href={link.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "rounded-xl px-4 py-3 text-sm font-medium hover:bg-white",
+                  "rounded-xl px-4 py-3 text-sm font-semibold hover:bg-white",
                   isActive
                     ? "text-ink underline decoration-forest decoration-2 underline-offset-4"
                     : "text-ink/80"
@@ -129,9 +125,6 @@ export function Navbar() {
               </a>
             );
           })}
-          <Button asChild className="mt-2" variant="primary">
-            <a href="#monitoring">Live Dashboard</a>
-          </Button>
         </motion.div>
       )}
     </header>

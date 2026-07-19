@@ -6,12 +6,12 @@ import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-36 pb-24 lg:pt-44 lg:pb-32">
+    <section id="home" className="relative overflow-hidden pt-28 pb-14 lg:pt-44 lg:pb-32">
       {/* ambient background accents */}
       <div className="pointer-events-none absolute -top-24 right-[-10%] h-[420px] w-[420px] rounded-full bg-leaf/20 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-[-10%] h-[320px] w-[320px] rounded-full bg-sun/25 blur-3xl" />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 lg:grid-cols-2 lg:gap-16 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ export function Hero() {
             SOLTERA — Smart Solar Cold Storage for Fresh Agriculture
           </h1>
 
-          <p className="max-w-lg text-base leading-relaxed text-ink/65 sm:text-lg">
+          <p className="max-w-lg font-serif text-base font-medium leading-relaxed text-ink/70 sm:text-lg">
             Wadah simpan dingin cerdas bertenaga surya yang menekan food loss
             komoditas hortikultura pascapanen, lengkap dengan monitoring suhu,
             kelembapan, dan energi secara real-time.
@@ -48,7 +48,7 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="mt-4 flex items-center gap-6 text-sm text-ink/50">
+          <div className="mt-4 flex items-center gap-6 text-sm font-medium text-ink/50">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-leaf" />
               100% Solar Powered
@@ -64,7 +64,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.92, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-          className="relative mx-auto w-full max-w-md"
+          className="relative mx-auto hidden w-full max-w-md lg:block"
         >
           <SolteraDeviceIllustration />
         </motion.div>

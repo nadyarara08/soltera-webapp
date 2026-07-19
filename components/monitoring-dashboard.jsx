@@ -43,7 +43,7 @@ export function MonitoringDashboard() {
   }, [status, toast]);
 
   return (
-    <section id="monitoring" className="py-24">
+    <section id="monitoring" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end">
           <SectionHeading
@@ -77,7 +77,7 @@ export function MonitoringDashboard() {
         </motion.div>
 
         {/* live sensor cards */}
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
           <SensorCard
             icon={Thermometer}
             label="Suhu Ruang Simpan"

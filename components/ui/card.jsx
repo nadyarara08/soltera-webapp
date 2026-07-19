@@ -26,7 +26,7 @@ export function CardTitle({ className, ...props }) {
 }
 
 export function CardDescription({ className, ...props }) {
-  return <p className={cn("text-sm text-ink/60", className)} {...props} />;
+  return <p className={cn("font-serif text-sm font-medium text-ink/70", className)} {...props} />;
 }
 
 export function CardContent({ className, ...props }) {

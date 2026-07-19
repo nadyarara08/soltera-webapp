@@ -11,21 +11,21 @@ export function SectionHeading({ eyebrow, title, description, align = "center", 
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-2.5 sm:gap-4",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className
       )}
     >
       {eyebrow && (
-        <span className="rounded-full bg-leaf/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-forest">
+        <span className="rounded-full bg-leaf/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-forest sm:px-4 sm:py-1.5 sm:text-xs">
           {eyebrow}
         </span>
       )}
-      <h2 className="font-display max-w-2xl text-3xl font-bold text-ink sm:text-4xl">
+      <h2 className="font-display max-w-2xl text-2xl font-bold text-ink sm:text-3xl lg:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="max-w-xl text-base leading-relaxed text-ink/65">{description}</p>
+        <p className="max-w-xl font-serif text-sm font-medium leading-relaxed text-ink/70 sm:text-base">{description}</p>
       )}
     </motion.div>
   );

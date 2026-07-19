@@ -15,7 +15,7 @@ const FLOW = [
 
 export function TechnologySection() {
   return (
-    <section id="technology" className="bg-mist py-24">
+    <section id="technology" className="bg-mist py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           eyebrow="Teknologi"
@@ -41,7 +41,7 @@ export function TechnologySection() {
             </svg>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-10 lg:grid-cols-6">
             {FLOW.map((step, i) => (
               <motion.div
                 key={step.label}
@@ -51,14 +51,15 @@ export function TechnologySection() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative flex flex-col items-center gap-3 text-center"
               >
-                <div className="relative z-10 flex h-[88px] w-[88px] flex-col items-center justify-center rounded-3xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)]">
-                  <step.icon size={26} className="text-forest" />
-                  <span className="mt-1 text-[10px] font-semibold text-ink/35">
+                <div className="relative z-10 flex h-16 w-16 flex-col items-center justify-center rounded-2xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] sm:h-[88px] sm:w-[88px] sm:rounded-3xl">
+                  <step.icon size={20} className="text-forest sm:hidden" />
+                  <step.icon size={26} className="hidden text-forest sm:block" />
+                  <span className="mt-1 text-[9px] font-semibold text-ink/35 sm:text-[10px]">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="font-display text-sm font-semibold text-ink">{step.label}</p>
-                <p className="max-w-[9.5rem] text-xs leading-relaxed text-ink/55">{step.note}</p>
+                <p className="font-display text-xs font-semibold text-ink sm:text-sm">{step.label}</p>
+                <p className="hidden max-w-[9.5rem] font-serif text-xs font-medium leading-relaxed text-ink/65 sm:block">{step.note}</p>
               </motion.div>
             ))}
           </div>

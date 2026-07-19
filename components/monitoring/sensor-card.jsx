@@ -24,20 +24,25 @@ export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", he
   };
 
   return (
-    <Card className="relative overflow-hidden p-6">
+    <Card className="relative overflow-hidden p-3.5 sm:p-6">
       <div className="flex items-start justify-between">
         <div
           className={cn(
-            "flex h-11 w-11 items-center justify-center rounded-2xl",
+            "flex h-8 w-8 items-center justify-center rounded-xl sm:h-11 sm:w-11 sm:rounded-2xl",
             toneStyles[tone]
           )}
         >
-          {Icon && <Icon size={20} />}
+          {Icon && (
+            <>
+              <Icon size={16} className="sm:hidden" />
+              <Icon size={20} className="hidden sm:block" />
+            </>
+          )}
         </div>
         {healthy !== undefined && (
           <span
             className={cn(
-              "h-2.5 w-2.5 rounded-full",
+              "h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5",
               healthy ? "bg-leaf animate-pulse-soft" : "bg-sun animate-pulse-soft"
             )}
             aria-hidden="true"
@@ -45,7 +50,7 @@ export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", he
         )}
       </div>
 
-      <p className="mt-4 text-sm font-medium text-ink/55">{label}</p>
+      <p className="mt-2.5 text-xs font-semibold leading-snug text-ink/60 sm:mt-4 sm:text-sm">{label}</p>
 
       <AnimatePresence mode="popLayout">
         <motion.p
@@ -54,10 +59,10 @@ export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", he
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.25 }}
-          className="font-display mt-1 text-3xl font-bold text-ink"
+          className="font-display mt-1 text-xl font-bold text-ink sm:text-3xl"
         >
           {value}
-          <span className="ml-1 text-base font-medium text-ink/40">{unit}</span>
+          <span className="ml-1 text-sm font-semibold text-ink/45 sm:text-base">{unit}</span>
         </motion.p>
       </AnimatePresence>
     </Card>

@@ -33,7 +33,7 @@ function ChartTooltip({ active, payload, label }) {
     <div className="rounded-xl bg-ink px-4 py-3 text-xs text-white shadow-lg">
       <p className="mb-1 font-semibold text-white/70">{label}</p>
       {payload.map((entry) => (
-        <p key={entry.dataKey} style={{ color: entry.color }}>
+        <p key={entry.dataKey} className="font-medium" style={{ color: entry.color }}>
           {METRIC_LABELS[entry.dataKey] ?? entry.dataKey}: {entry.value}
         </p>
       ))}
@@ -62,7 +62,7 @@ export function SensorChart({ data, metricKey, title, description, unit = "" }) 
 
       <div className="h-64 w-full">
         {data.length === 0 ? (
-          <div className="flex h-full items-center justify-center text-sm text-ink/40">
+          <div className="flex h-full items-center justify-center text-sm font-medium text-ink/45">
             Menunggu data sensor pertama…
           </div>
         ) : (

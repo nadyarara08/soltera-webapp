@@ -43,7 +43,7 @@ const DOCS = [
 
 export function ResearchDocumentation() {
   return (
-    <section id="documentation" className="py-24">
+    <section id="documentation" className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           eyebrow="Research Documentation"
@@ -51,7 +51,7 @@ export function ResearchDocumentation() {
           description="Dokumentasi lengkap tersedia bagi juri dan peneliti yang ingin menelaah metodologi lebih dalam."
         />
 
-        <div className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 lg:mt-14 lg:grid-cols-3 lg:gap-5">
           {DOCS.map((doc, i) => (
             <motion.div
               key={doc.title}
@@ -60,15 +60,16 @@ export function ResearchDocumentation() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Card className="flex h-full flex-col p-7">
+              <Card className="flex h-full flex-col p-4 sm:p-7">
                 <CardHeader className="p-0">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-forest/10 text-forest">
-                    <doc.icon size={20} />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-forest/10 text-forest sm:h-11 sm:w-11 sm:rounded-2xl">
+                    <doc.icon size={18} className="sm:hidden" />
+                    <doc.icon size={20} className="hidden sm:block" />
                   </div>
-                  <CardTitle className="mt-4">{doc.title}</CardTitle>
+                  <CardTitle className="mt-3 text-base sm:mt-4 sm:text-lg">{doc.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-1 flex-col p-0 pt-4">
-                  <p className="flex-1 text-sm leading-relaxed text-ink/60">{doc.summary}</p>
+                <CardContent className="flex flex-1 flex-col p-0 pt-3 sm:pt-4">
+                  <p className="flex-1 font-serif text-xs font-medium leading-relaxed text-ink/70 sm:text-sm">{doc.summary}</p>
 
                   <Dialog>
                     <DialogTrigger asChild>

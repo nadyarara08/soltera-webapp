@@ -21,7 +21,7 @@ export function TabsTrigger({ className, ...props }) {
   return (
     <TabsPrimitive.Trigger
       className={cn(
-        "rounded-full px-4 py-2 text-sm font-medium text-ink/60 transition-colors",
+        "rounded-full px-4 py-2 text-sm font-semibold text-ink/65 transition-colors",
         "data-[state=active]:bg-forest data-[state=active]:text-white",
         "hover:text-ink",
         className

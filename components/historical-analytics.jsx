@@ -2,28 +2,35 @@
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SensorChart } from "@/components/monitoring/sensor-chart";
+import { HistoryDiagnosisPanel } from "@/components/monitoring/history-diagnosis-panel";
 import { SectionHeading } from "@/components/shared/section-heading";
-import { useSensorData } from "@/lib/use-sensor-data";
+import { useSensorHistory24h } from "@/lib/use-sensor-history";
 
 export function HistoricalAnalytics() {
-  const { history } = useSensorData();
+  const { history, analysis, loading } = useSensorHistory24h();
 
   return (
-    <section className="bg-telor py-24">
+    <section className="bg-telor py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           eyebrow="Historical Analytics"
-          title="Tren data sensor selama sesi pemantauan berjalan"
-          description="Grafik terisi otomatis dari pembacaan sensor sejak dashboard dibuka. Hubungkan ke node riwayat Firebase untuk data jangka panjang."
+          title="Riwayat & diagnosis kondisi 24 jam terakhir"
+          description="Pembacaan langsung dari Firebase (sensor_data) disampel setiap beberapa menit dan dikumpulkan dalam jendela bergulir 24 jam, lalu diberi penjelasan otomatis berdasarkan kombinasi suhu dan kualitas udara."
         />
 
-        <div className="mt-12">
+        {/* rule-based explanation of the last 24 hours */}
+        <div className="mt-10">
+          <HistoryDiagnosisPanel analysis={analysis} loading={loading} />
+        </div>
+
+        <div className="mt-10">
           <Tabs defaultValue="temperature">
             <div className="flex justify-center">
               <TabsList>
                 <TabsTrigger value="temperature">Suhu</TabsTrigger>
                 <TabsTrigger value="humidity">Kelembapan</TabsTrigger>
                 <TabsTrigger value="battery">Baterai</TabsTrigger>
+                <TabsTrigger value="gas">Gas (MQ135)</TabsTrigger>
               </TabsList>
             </div>
 
@@ -31,7 +38,7 @@ export function HistoricalAnalytics() {
               <SensorChart
                 data={history}
                 metricKey="temperature"
-                title="Suhu Ruang Simpan"
+                title="Suhu Ruang Simpan · 24 Jam Terakhir"
                 description="Target operasional: di bawah 32°C untuk menjaga kesegaran komoditas."
                 unit="°C"
               />
@@ -41,7 +48,7 @@ export function HistoricalAnalytics() {
               <SensorChart
                 data={history}
                 metricKey="humidity"
-                title="Kelembapan Relatif"
+                title="Kelembapan Relatif · 24 Jam Terakhir"
                 description="Kelembapan stabil membantu memperlambat penyusutan hasil panen."
                 unit="%"
               />
@@ -51,9 +58,19 @@ export function HistoricalAnalytics() {
               <SensorChart
                 data={history}
                 metricKey="battery_voltage"
-                title="Tegangan Baterai"
+                title="Tegangan Baterai · 24 Jam Terakhir"
                 description="Menunjukkan kesehatan penyimpanan daya dari panel surya."
                 unit="V"
+              />
+            </TabsContent>
+
+            <TabsContent value="gas">
+              <SensorChart
+                data={history}
+                metricKey="mq135_ppm"
+                title="Kualitas Udara (MQ135) · 24 Jam Terakhir"
+                description="Lonjakan ppm bisa menandakan gas dari komoditas yang mulai membusuk."
+                unit=" ppm"
               />
             </TabsContent>
           </Tabs>
