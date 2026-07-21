@@ -112,7 +112,7 @@ export function MonitoringDashboard() {
             label="Tegangan Baterai"
             value={latest.battery_voltage}
             unit="V"
-            tone="sun"
+            tone="neutral"
             healthy={derived.battery.healthy}
             stale={isOffline}
           />
