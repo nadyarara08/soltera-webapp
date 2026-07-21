@@ -18,7 +18,7 @@ import { useSensorData, deriveSystemStatus } from "@/lib/use-sensor-data";
 import { useToast } from "@/components/ui/toast";
 
 export function MonitoringDashboard() {
-  const { latest, status, isLive } = useSensorData();
+  const { latest, status, isLive, isOffline } = useSensorData();
   const { toast } = useToast();
   const derived = deriveSystemStatus(latest);
   const prevStatus = useRef(status);
@@ -35,6 +35,12 @@ export function MonitoringDashboard() {
         toast({
           title: "Koneksi realtime terputus",
           description: "Menampilkan data terakhir yang tersedia.",
+          variant: "warning",
+        });
+      } else if (status === "offline") {
+        toast({
+          title: "Perangkat tidak terhubung",
+          description: "Tidak ada data baru dari sensor selama lebih dari 2x24 jam.",
           variant: "warning",
         });
       }
@@ -56,10 +62,10 @@ export function MonitoringDashboard() {
           <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-ink/60 shadow-sm">
             <span
               className={`h-2 w-2 rounded-full ${
-                isLive ? "bg-leaf animate-pulse-soft" : "bg-ink/20"
+                isLive ? "bg-leaf animate-pulse-soft" : isOffline ? "bg-ink/30" : "bg-ink/20"
               }`}
             />
-            {isLive ? "Realtime · Terhubung" : "Menunggu koneksi…"}
+            {isLive ? "Realtime · Terhubung" : isOffline ? "Tidak Terhubung" : "Menunggu koneksi…"}
           </div>
         </div>
 
@@ -70,10 +76,15 @@ export function MonitoringDashboard() {
           viewport={{ once: true }}
           className="mt-8 flex flex-wrap gap-3"
         >
-          <StatusBadge label={derived.cooling.label} active={derived.cooling.active} />
-          <StatusBadge label={derived.battery.label} active={derived.battery.healthy} />
-          <StatusBadge label={derived.gas.label} active={derived.gas.safe} />
-          <StatusBadge label={derived.temperature.label} active={derived.temperature.inRange} />
+          {isOffline && (
+            <StatusBadge label="Data Tidak Terkini · Cek Perangkat" active={false} />
+          )}
+          <StatusBadge label={derived.cooling.label} active={derived.cooling.active} neutral={isOffline} />
+          <StatusBadge label={derived.battery.label} active={derived.battery.healthy} neutral={isOffline} />
+          <StatusBadge label={derived.gas.label} active={derived.gas.safe} neutral={isOffline} />
+          <StatusBadge label={derived.temperature.label} active={derived.temperature.inRange} neutral={isOffline} />
+          <StatusBadge label={derived.humidity.label} active={derived.humidity.inRange} neutral={isOffline} />
+          <StatusBadge label={derived.fan.label} active={derived.fan.active} neutral={isOffline} />
         </motion.div>
 
         {/* live sensor cards */}
@@ -85,6 +96,7 @@ export function MonitoringDashboard() {
             unit="°C"
             tone="forest"
             healthy={derived.temperature.inRange}
+            stale={isOffline}
           />
           <SensorCard
             icon={Droplets}
@@ -92,6 +104,8 @@ export function MonitoringDashboard() {
             value={latest.humidity}
             unit="%"
             tone="leaf"
+            healthy={derived.humidity.inRange}
+            stale={isOffline}
           />
           <SensorCard
             icon={BatteryFull}
@@ -100,6 +114,7 @@ export function MonitoringDashboard() {
             unit="V"
             tone="sun"
             healthy={derived.battery.healthy}
+            stale={isOffline}
           />
           <SensorCard
             icon={SunMedium}
@@ -108,6 +123,7 @@ export function MonitoringDashboard() {
             unit=""
             tone="forest"
             healthy={derived.cooling.active}
+            stale={isOffline}
           />
           <SensorCard
             icon={Fan}
@@ -115,6 +131,8 @@ export function MonitoringDashboard() {
             value={latest.fan_status}
             unit=""
             tone="leaf"
+            healthy={derived.fan.active}
+            stale={isOffline}
           />
           <SensorCard
             icon={Wind}
@@ -123,6 +141,7 @@ export function MonitoringDashboard() {
             unit="ppm"
             tone="neutral"
             healthy={derived.gas.safe}
+            stale={isOffline}
           />
         </div>
       </div>

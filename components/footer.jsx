@@ -1,4 +1,4 @@
-import { Leaf, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -7,9 +7,11 @@ export function Footer() {
         <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between lg:gap-16">
           <div className="flex max-w-sm flex-col gap-3">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-leaf text-ink">
-                <Leaf size={18} />
-              </span>
+              <img
+                src="/logo.png"
+                alt="SOLTERA"
+                className="h-9 w-9 object-contain"
+              />
               <span className="font-display text-lg font-bold text-cream">SOLTERA</span>
             </div>
             <p className="font-accent text-sm font-medium leading-relaxed text-cream/65">

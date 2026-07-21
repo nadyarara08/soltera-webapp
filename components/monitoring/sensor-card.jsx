@@ -14,8 +14,10 @@ import { cn } from "@/lib/utils";
  *  - unit: e.g. "°C"
  *  - tone: "forest" | "leaf" | "sun" | "neutral" — accent color
  *  - healthy: optional boolean to tint the value red/green
+ *  - stale: optional boolean — when true, dot renders neutral gray
+ *           regardless of `healthy` (data isn't live anymore)
  */
-export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", healthy }) {
+export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", healthy, stale = false }) {
   const toneStyles = {
     forest: "bg-forest/10 text-forest",
     leaf: "bg-leaf/20 text-forest",
@@ -39,11 +41,15 @@ export function SensorCard({ icon: Icon, label, value, unit, tone = "forest", he
             </>
           )}
         </div>
-        {healthy !== undefined && (
+        {(healthy !== undefined || stale) && (
           <span
             className={cn(
               "h-2 w-2 rounded-full sm:h-2.5 sm:w-2.5",
-              healthy ? "bg-leaf animate-pulse-soft" : "bg-sun animate-pulse-soft"
+              stale
+                ? "bg-ink/25"
+                : healthy
+                ? "bg-leaf animate-pulse-soft"
+                : "bg-sun animate-pulse-soft"
             )}
             aria-hidden="true"
           />
