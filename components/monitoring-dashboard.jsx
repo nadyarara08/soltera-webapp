@@ -81,7 +81,7 @@ export function MonitoringDashboard() {
           )}
           <StatusBadge label={derived.cooling.label} active={derived.cooling.active} neutral={isOffline} />
           <StatusBadge label={derived.battery.label} active={derived.battery.healthy} neutral={isOffline} />
-          <StatusBadge label={derived.gas.label} active={derived.gas.safe} neutral={isOffline} />
+          <StatusBadge label={derived.gas.label} severity={derived.gas.severity} neutral={isOffline} />
           <StatusBadge label={derived.temperature.label} active={derived.temperature.inRange} neutral={isOffline} />
           <StatusBadge label={derived.humidity.label} active={derived.humidity.inRange} neutral={isOffline} />
           <StatusBadge label={derived.fan.label} active={derived.fan.active} neutral={isOffline} />
@@ -140,7 +140,8 @@ export function MonitoringDashboard() {
             value={latest.mq135_ppm}
             unit="ppm"
             tone="neutral"
-            healthy={derived.gas.safe}
+            severity={derived.gas.severity}
+            caption={derived.gas.label?.replace(/^Gas:\s*/, "")}
             stale={isOffline}
           />
         </div>
