@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-// Dot color untuk kartu yang punya 5 tingkat (mis. gas MQ135) lewat prop
+// Dot color untuk kartu yang punya 5 tingkat (mis. gas) lewat prop
 // `severity`, alih-alih cuma boolean `healthy` (hijau/kuning).
 const SEVERITY_DOT = {
   safe: "bg-leaf",
@@ -26,7 +26,7 @@ const SEVERITY_DOT = {
  *  - healthy: optional boolean to tint the value red/green
  *  - severity: optional "safe" | "caution" | "warning" | "critical" | "unknown"
  *              — kalau diisi, ini menggantikan warna dot dari `healthy`
- *              (dipakai kartu gas MQ135 yang punya 5 tingkat)
+ *              (dipakai kartu gas yang punya 5 tingkat)
  *  - caption: optional short text shown under the value (mis. nama tingkat
  *             gas, "Perlu Diwaspadai")
  *  - stale: optional boolean — when true, dot renders neutral gray

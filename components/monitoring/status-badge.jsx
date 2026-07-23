@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-// Dipakai saat badge diberi prop `severity` (mis. status gas MQ135 5-tingkat)
+// Dipakai saat badge diberi prop `severity` (mis. status gas 5-tingkat)
 // alih-alih boolean `active` biasa.
 const SEVERITY_STYLES = {
   safe: { pill: "bg-leaf/20 text-forest", dot: "bg-forest" },
@@ -15,7 +15,7 @@ const SEVERITY_STYLES = {
  *  - active/neutral: dipakai badge biner lama (cooling, battery, suhu, dst).
  *  - severity: opsional — "safe" | "caution" | "warning" | "critical" | "unknown".
  *              Kalau diisi, ini menggantikan warna dari `active` (dipakai
- *              badge gas MQ135 yang punya 5 tingkat, bukan cuma aman/tidak).
+ *              badge gas yang punya 5 tingkat, bukan cuma aman/tidak).
  */
 export function StatusBadge({ label, active = true, neutral = false, severity }) {
   const styles = severity ? SEVERITY_STYLES[severity] ?? SEVERITY_STYLES.unknown : null;

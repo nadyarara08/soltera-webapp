@@ -29,8 +29,7 @@ export function HistoricalAnalytics() {
               <TabsList>
                 <TabsTrigger value="temperature">Suhu</TabsTrigger>
                 <TabsTrigger value="humidity">Kelembapan</TabsTrigger>
-                <TabsTrigger value="battery">Baterai</TabsTrigger>
-                <TabsTrigger value="gas">Gas (MQ135)</TabsTrigger>
+                <TabsTrigger value="gas">Gas</TabsTrigger>
               </TabsList>
             </div>
 
@@ -54,21 +53,11 @@ export function HistoricalAnalytics() {
               />
             </TabsContent>
 
-            <TabsContent value="battery">
-              <SensorChart
-                data={history}
-                metricKey="battery_voltage"
-                title="Tegangan Baterai · 24 Jam Terakhir"
-                description="Menunjukkan kesehatan penyimpanan daya dari panel surya."
-                unit="V"
-              />
-            </TabsContent>
-
             <TabsContent value="gas">
               <SensorChart
                 data={history}
                 metricKey="mq135_ppm"
-                title="Kualitas Udara (MQ135) · 24 Jam Terakhir"
+                title="Kualitas Udara · 24 Jam Terakhir"
                 description="Lonjakan ppm bisa menandakan gas dari komoditas yang mulai membusuk."
                 unit=" ppm"
               />

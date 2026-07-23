@@ -136,7 +136,7 @@ export function MonitoringDashboard() {
           />
           <SensorCard
             icon={Wind}
-            label="Kualitas Udara (MQ135)"
+            label="Kualitas Udara"
             value={latest.mq135_ppm}
             unit="ppm"
             tone="neutral"

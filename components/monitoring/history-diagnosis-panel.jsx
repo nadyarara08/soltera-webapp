@@ -128,7 +128,7 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
             unit="%"
           />
           <StatCell
-            label="Rata-rata Gas (MQ135)"
+            label="Rata-rata Gas"
             value={analysis?.avgGas != null ? analysis.avgGas.toFixed(0) : null}
             unit="ppm"
           />
