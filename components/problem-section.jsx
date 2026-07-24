@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { TrendingDown, ThermometerSun, Wallet, Percent } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -37,6 +38,35 @@ const STATS = [
   },
 ];
 
+function StatCard({ stat, index }) {
+  const [hasEntered, setHasEntered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      onViewportEnter={() => setHasEntered(true)}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      whileHover={{ y: -6 }}
+    >
+      <Card className="h-full p-3.5 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(31,46,18,0.14)] sm:p-6">
+        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-forest/10 text-forest sm:h-11 sm:w-11 sm:rounded-2xl">
+          <stat.icon size={16} className="sm:hidden" />
+          <stat.icon size={20} className="hidden sm:block" />
+        </div>
+        <p className="font-display mt-3 text-2xl font-extrabold text-ink sm:mt-5 sm:text-4xl">
+          <CountUp value={stat.value} suffix={stat.suffix} start={hasEntered} />
+        </p>
+        <p className="mt-2 font-accent text-xs font-medium leading-snug text-ink/70 sm:mt-3 sm:text-sm sm:leading-relaxed">{stat.label}</p>
+        <p className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-ink/40 sm:mt-4 sm:text-xs">
+          {stat.source}
+        </p>
+      </Card>
+    </motion.div>
+  );
+}
+
 export function ProblemSection() {
   return (
     <section className="bg-telor py-16 lg:py-24">
@@ -49,28 +79,7 @@ export function ProblemSection() {
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:mt-14 lg:grid-cols-4">
           {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-            >
-              <Card className="h-full p-3.5 transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(31,46,18,0.14)] sm:p-6">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-forest/10 text-forest sm:h-11 sm:w-11 sm:rounded-2xl">
-                  <stat.icon size={16} className="sm:hidden" />
-                  <stat.icon size={20} className="hidden sm:block" />
-                </div>
-                <p className="font-display mt-3 text-2xl font-extrabold text-ink sm:mt-5 sm:text-4xl">
-                  <CountUp value={stat.value} suffix={stat.suffix} />
-                </p>
-                <p className="mt-2 font-accent text-xs font-medium leading-snug text-ink/70 sm:mt-3 sm:text-sm sm:leading-relaxed">{stat.label}</p>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-wide text-ink/40 sm:mt-4 sm:text-xs">
-                  {stat.source}
-                </p>
-              </Card>
-            </motion.div>
+            <StatCard key={stat.label} stat={stat} index={i} />
           ))}
         </div>
       </div>
