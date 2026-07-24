@@ -32,7 +32,7 @@ export function Hero() {
           <p className="max-w-lg font-accent text-base font-medium leading-relaxed text-ink/70 sm:text-lg">
             Wadah simpan dingin cerdas bertenaga surya yang menekan food loss
             komoditas hortikultura pascapanen, lengkap dengan monitoring suhu,
-            kelembapan, dan energi secara real-time.
+            kelembapan, dan gas secara real-time.
           </p>
 
           <div className="-mt-2 flex items-center gap-5 text-sm font-medium text-ink/50">

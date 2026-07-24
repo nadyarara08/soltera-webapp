@@ -48,8 +48,7 @@ export function ResearchDocumentation() {
         <SectionHeading
           eyebrow="Research Documentation"
           title="Ringkasan penelitian di balik SOLTERA"
-          description="Dokumentasi lengkap tersedia bagi juri dan peneliti yang ingin menelaah metodologi lebih dalam."
-        />
+       />
 
         <div className="mt-8 grid grid-cols-1 gap-4 lg:mt-14 lg:grid-cols-3 lg:gap-5">
           {DOCS.map((doc, i) => (

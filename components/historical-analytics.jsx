@@ -15,7 +15,7 @@ export function HistoricalAnalytics() {
         <SectionHeading
           eyebrow="Historical Analytics"
           title="Riwayat & diagnosis kondisi 24 jam terakhir"
-          description="Pembacaan langsung dari Firebase (sensor_data) disampel setiap beberapa menit dan dikumpulkan dalam jendela bergulir 24 jam, lalu diberi penjelasan otomatis berdasarkan kombinasi suhu dan kualitas udara."
+          description="Sistem menganalisis data suhu, kelembapan, dan gas secara berkala untuk menyimpulkan kondisi dalam 24 jam terakhir."
         />
 
         {/* rule-based explanation of the last 24 hours */}

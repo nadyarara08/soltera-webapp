@@ -56,7 +56,7 @@ export function MonitoringDashboard() {
             align="left"
             eyebrow="Live Monitoring"
             title="Kondisi ruang simpan, dipantau detik demi detik"
-            description="Data langsung dari sensor ESP32 melalui Firebase Realtime Database — tanpa perlu refresh halaman."
+            description="Data langsung dari sensor ESP32 melalui Firebase Realtime Database."
             className="sm:items-start sm:text-left"
           />
           <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-semibold text-ink/60 shadow-sm">
