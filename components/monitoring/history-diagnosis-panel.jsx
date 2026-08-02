@@ -132,7 +132,7 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
             value={analysis?.diagnosis?.gasPercent ?? null}
             unit="%"
           />
-          <StatCell label="Tingkat Kesegaran" value={analysis?.diagnosis?.gasCategory ?? null} />
+          <StatCell label="Tingkat Kesegaran" value={analysis?.diagnosis?.gasCategory ?? null} valueSize="sm" />
           <StatCell label="Gas Terdeteksi" value={analysis?.gasDetectedPercent ?? null} unit="% waktu" />
           <StatCell label="Pendingin Aktif" value={analysis?.coolingActivePercent ?? null} unit="% waktu" />
           <StatCell label="Baterai Sehat" value={analysis?.batteryHealthyPercent ?? null} unit="% waktu" />
