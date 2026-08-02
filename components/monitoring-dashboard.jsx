@@ -136,9 +136,9 @@ export function MonitoringDashboard() {
           />
           <SensorCard
             icon={Wind}
-            label="Kualitas Udara"
-            value={latest.mq135_ppm}
-            unit="ppm"
+            label="Konsentrasi Gas"
+            value={derived.gas.spoilageIndex ?? 0}
+            unit="%"
             tone="neutral"
             severity={derived.gas.severity}
             caption={derived.gas.label?.replace(/^Gas:\s*/, "")}

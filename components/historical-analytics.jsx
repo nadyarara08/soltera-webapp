@@ -1,13 +1,24 @@
 "use client";
 
+import { useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SensorChart } from "@/components/monitoring/sensor-chart";
 import { HistoryDiagnosisPanel } from "@/components/monitoring/history-diagnosis-panel";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { useSensorHistory24h } from "@/lib/use-sensor-history";
+import { calculateSpoilageIndex } from "@/lib/gas-thresholds";
 
 export function HistoricalAnalytics() {
   const { history, analysis, loading } = useSensorHistory24h();
+
+  // `history` menyimpan mq135_ppm sebagai raw/ADC (dipakai untuk klasifikasi
+  // di lib/sensor-diagnosis.js). Untuk grafik, konversi ke persentase indeks
+  // kebusukan sesuai kalibrasi di lib/gas-thresholds.js — tanpa mengubah data
+  // raw yang dipakai bagian diagnosis.
+  const gasChartData = useMemo(
+    () => history.map((h) => ({ ...h, mq135_ppm: calculateSpoilageIndex(h.mq135_ppm) ?? 0 })),
+    [history]
+  );
 
   return (
     <section className="bg-telor py-16 lg:py-24">
@@ -55,11 +66,11 @@ export function HistoricalAnalytics() {
 
             <TabsContent value="gas">
               <SensorChart
-                data={history}
+                data={gasChartData}
                 metricKey="mq135_ppm"
-                title="Kualitas Udara · 24 Jam Terakhir"
-                description="Lonjakan ppm bisa menandakan gas dari komoditas yang mulai membusuk."
-                unit=" ppm"
+                title="Konsentrasi Gas · 24 Jam Terakhir"
+                description="Lonjakan persentase konsentrasi gas bisa menandakan komoditas yang mulai membusuk."
+                unit=" %"
               />
             </TabsContent>
           </Tabs>

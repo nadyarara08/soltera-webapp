@@ -24,7 +24,7 @@ const METRIC_LABELS = {
   temperature: "Suhu (°C)",
   humidity: "Kelembapan (%)",
   battery_voltage: "Tegangan Baterai (V)",
-  mq135_ppm: "Kualitas Udara (ppm)",
+  mq135_ppm: "Konsentrasi Gas (%)",
 };
 
 function ChartTooltip({ active, payload, label }) {
