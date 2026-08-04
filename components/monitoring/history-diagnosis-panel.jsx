@@ -94,7 +94,7 @@ export function HistoryDiagnosisPanel({ analysis, loading, history = [] }) {
                 styles.badge
               )}
             >
-              <Icon size={22} />
+              <Icon size={22} /> 
             </span>
             <div>
               <div className="flex flex-wrap items-center gap-2">
