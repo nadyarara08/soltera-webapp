@@ -34,12 +34,12 @@ const STATUS_STYLES = {
 
 function StatCell({ label, value, unit = "" }) {
   return (
-    <div className="rounded-xl bg-telor/60 px-3 py-2 sm:rounded-2xl sm:px-4 sm:py-3">
-      <p className="text-[11px] font-semibold text-ink/55 sm:text-xs">{label}</p>
-      <p className="font-display mt-1 text-base font-semibold text-ink sm:text-lg">
+    <div className="flex h-full flex-col justify-between gap-2 rounded-xl bg-telor/60 px-3 py-2.5 sm:rounded-2xl sm:px-4 sm:py-3">
+      <p className="text-xs font-semibold leading-tight text-ink/55 sm:text-sm">{label}</p>
+      <p className="font-display text-lg font-semibold text-ink sm:text-2xl">
         {value === null || value === undefined ? "—" : value}
         {value !== null && value !== undefined && unit && (
-          <span className="ml-1 text-xs font-semibold text-ink/45 sm:text-sm">{unit}</span>
+          <span className="ml-1 text-sm font-semibold text-ink/45 sm:text-base">{unit}</span>
         )}
       </p>
     </div>
