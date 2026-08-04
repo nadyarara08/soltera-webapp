@@ -136,12 +136,12 @@ export function MonitoringDashboard() {
           />
           <SensorCard
             icon={Wind}
-            label="Konsentrasi Gas"
-            value={derived.gas.spoilageIndex ?? 0}
-            unit="%"
+            label="Intensitas Gas"
+            value={latest.mq135_raw}
+            unit=""
             tone="neutral"
             severity={derived.gas.severity}
-            caption={derived.gas.label?.replace(/^Gas:\s*/, "")}
+            caption={derived.gas.label}
             stale={isOffline}
           />
         </div>

@@ -1,24 +1,13 @@
 "use client";
 
-import { useMemo } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SensorChart } from "@/components/monitoring/sensor-chart";
 import { HistoryDiagnosisPanel } from "@/components/monitoring/history-diagnosis-panel";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { useSensorHistory24h } from "@/lib/use-sensor-history";
-import { calculateSpoilageIndex } from "@/lib/gas-thresholds";
 
 export function HistoricalAnalytics() {
   const { history, analysis, loading } = useSensorHistory24h();
-
-  // `history` menyimpan mq135_ppm sebagai raw/ADC (dipakai untuk klasifikasi
-  // di lib/sensor-diagnosis.js). Untuk grafik, konversi ke persentase indeks
-  // kebusukan sesuai kalibrasi di lib/gas-thresholds.js — tanpa mengubah data
-  // raw yang dipakai bagian diagnosis.
-  const gasChartData = useMemo(
-    () => history.map((h) => ({ ...h, mq135_ppm: calculateSpoilageIndex(h.mq135_ppm) ?? 0 })),
-    [history]
-  );
 
   return (
     <section className="bg-telor py-16 lg:py-24">
@@ -31,7 +20,7 @@ export function HistoricalAnalytics() {
 
         {/* rule-based explanation of the last 24 hours */}
         <div className="mt-10">
-          <HistoryDiagnosisPanel analysis={analysis} loading={loading} />
+          <HistoryDiagnosisPanel analysis={analysis} loading={loading} history={history} />
         </div>
 
         <div className="mt-10">
@@ -66,11 +55,11 @@ export function HistoricalAnalytics() {
 
             <TabsContent value="gas">
               <SensorChart
-                data={gasChartData}
-                metricKey="mq135_ppm"
-                title="Konsentrasi Gas · 24 Jam Terakhir"
-                description="Lonjakan persentase konsentrasi gas bisa menandakan komoditas yang mulai membusuk."
-                unit=" %"
+                data={history}
+                metricKey="mq135_raw"
+                title="Intensitas Gas · 24 Jam Terakhir"
+                description="Angka mentah dari sensor MQ135. Lonjakan intensitas gas bisa menandakan gangguan sirkulasi udara atau performa unit yang menurun."
+                unit=""
               />
             </TabsContent>
           </Tabs>

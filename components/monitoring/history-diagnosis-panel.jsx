@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, AlertTriangle, AlertOctagon, HelpCircle, Clock } from "lucide-react";
+import { CheckCircle2, AlertTriangle, AlertOctagon, HelpCircle, Clock, Download } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/toast";
+import { downloadSensorHistoryCsv } from "@/lib/export-sensor-history";
 import { cn } from "@/lib/utils";
 
 const STATUS_STYLES = {
@@ -50,11 +53,30 @@ function StatCell({ label, value, unit = "" }) {
  * Props:
  *  - analysis: return value of analyzeSensorHistory() from lib/sensor-diagnosis
  *  - loading: boolean
+ *  - history: raw 24h reading array from useSensorHistory24h(), used for export
  */
-export function HistoryDiagnosisPanel({ analysis, loading }) {
+export function HistoryDiagnosisPanel({ analysis, loading, history = [] }) {
   const status = analysis?.diagnosis?.status ?? "unknown";
   const styles = STATUS_STYLES[status] ?? STATUS_STYLES.unknown;
   const Icon = styles.icon;
+  const { toast } = useToast();
+
+  const handleExport = () => {
+    const success = downloadSensorHistoryCsv(history);
+    if (success) {
+      toast({
+        title: "Data berhasil diekspor",
+        description: `${history.length} titik data 24 jam terakhir diunduh sebagai CSV.`,
+        variant: "success",
+      });
+    } else {
+      toast({
+        title: "Belum ada data untuk diekspor",
+        description: "Tunggu hingga data sensor 24 jam terakhir tersedia.",
+        variant: "warning",
+      });
+    }
+  };
 
   return (
     <motion.div
@@ -105,6 +127,19 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
               )}
             </div>
           </div>
+
+          <div className="flex justify-end sm:shrink-0">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleExport}
+              disabled={history.length === 0}
+              className="gap-1.5"
+            >
+              <Download size={15} />
+              Export Data
+            </Button>
+          </div>
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-6 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
@@ -128,11 +163,9 @@ export function HistoryDiagnosisPanel({ analysis, loading }) {
             unit="%"
           />
           <StatCell
-            label="Konsentrasi Gas"
-            value={analysis?.diagnosis?.gasPercent ?? null}
-            unit="%"
+            label="Intensitas Gas"
+            value={analysis?.avgGas != null ? Math.round(analysis.avgGas) : null}
           />
-          <StatCell label="Tingkat Kesegaran" value={analysis?.diagnosis?.gasCategory ?? null} valueSize="sm" />
           <StatCell label="Gas Terdeteksi" value={analysis?.gasDetectedPercent ?? null} unit="% waktu" />
           <StatCell label="Pendingin Aktif" value={analysis?.coolingActivePercent ?? null} unit="% waktu" />
           <StatCell label="Baterai Sehat" value={analysis?.batteryHealthyPercent ?? null} unit="% waktu" />

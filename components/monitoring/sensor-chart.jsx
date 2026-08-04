@@ -17,14 +17,14 @@ const METRIC_COLORS = {
   temperature: "#416D19", // Forest
   humidity: "#9BCF53", // Leaf
   battery_voltage: "#D97B3F", // Terracotta/orange
-  mq135_ppm: "#C9A227",
+  mq135_raw: "#C9A227",
 };
 
 const METRIC_LABELS = {
   temperature: "Suhu (°C)",
   humidity: "Kelembapan (%)",
   battery_voltage: "Tegangan Baterai (V)",
-  mq135_ppm: "Konsentrasi Gas (%)",
+  mq135_raw: "Intensitas Gas",
 };
 
 function ChartTooltip({ active, payload, label }) {
@@ -45,7 +45,7 @@ function ChartTooltip({ active, payload, label }) {
  * Renders one historical metric as a smooth area chart.
  *
  * Props:
- *  - data: array of { time, temperature, humidity, battery_voltage, mq135_ppm }
+ *  - data: array of { time, temperature, humidity, battery_voltage, mq135_raw }
  *  - metricKey: which field of `data` to plot
  *  - title / description: card copy
  */

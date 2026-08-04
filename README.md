@@ -28,7 +28,7 @@ Buka [http://localhost:3000](http://localhost:3000).
        "battery_voltage": "3.37",
        "fan_status": "ON",
        "humidity": "59.10",
-       "mq135_ppm": "401.00",
+       "mq135_raw": "401.00",
        "peltier_status": "ON",
        "temperature": "30.00",
        "timestamp": 89
