@@ -12,7 +12,7 @@ const SEVERITY_STYLES = {
 
 /**
  * Props:
- *  - active/neutral: dipakai badge biner lama (cooling, battery, suhu, dst).
+ *  - active/neutral: dipakai badge biner lama (, battery, suhu, dst).
  *  - severity: opsional — "safe" | "caution" | "warning" | "critical" | "unknown".
  *              Kalau diisi, ini menggantikan warna dari `active` (dipakai
  *              badge gas yang punya 5 tingkat, bukan cuma aman/tidak).

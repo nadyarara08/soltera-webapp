@@ -81,7 +81,6 @@ export function MonitoringDashboard() {
           )}
           <StatusBadge label={derived.cooling.label} active={derived.cooling.active} neutral={isOffline} />
           <StatusBadge label={derived.battery.label} active={derived.battery.healthy} neutral={isOffline} />
-          <StatusBadge label={derived.gas.label} severity={derived.gas.severity} neutral={isOffline} />
           <StatusBadge label={derived.temperature.label} active={derived.temperature.inRange} neutral={isOffline} />
           <StatusBadge label={derived.humidity.label} active={derived.humidity.inRange} neutral={isOffline} />
           <StatusBadge label={derived.fan.label} active={derived.fan.active} neutral={isOffline} />
@@ -138,10 +137,8 @@ export function MonitoringDashboard() {
             icon={Wind}
             label="Intensitas Gas"
             value={latest.mq135_raw}
-            unit=""
+            unit="ADC"
             tone="neutral"
-            severity={derived.gas.severity}
-            caption={derived.gas.label}
             stale={isOffline}
           />
         </div>

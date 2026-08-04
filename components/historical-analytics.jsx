@@ -58,8 +58,8 @@ export function HistoricalAnalytics() {
                 data={history}
                 metricKey="mq135_raw"
                 title="Intensitas Gas · 24 Jam Terakhir"
-                description="Angka mentah dari sensor MQ135. Lonjakan intensitas gas bisa menandakan gangguan sirkulasi udara atau performa unit yang menurun."
-                unit=""
+                description="Angka mentah dari sensor MQ135. Jika terjadi lonjakan, kemungkinan ada indikasi kebusukan pada komoditas di dalam unit — disarankan untuk segera dicek secara langsung."
+                unit="ADC"
               />
             </TabsContent>
           </Tabs>
